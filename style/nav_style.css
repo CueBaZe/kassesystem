@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: rgb(7, 176, 7);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 35px !important;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.name {
+    color: white !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+
+.dropdown-menu {
+    background-color: rgb(14, 143, 14) !important; /* Change to your preferred color */
+    border: none; /* Optional: Remove border if needed */
+}
+
+.dropdown-item {
+    color: white !important; /* Change text color */
+    padding: 5px !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(8, 122, 8) !important; /* Change hover background */
+}
+
