@@ -1,0 +1,8 @@
+#footer {
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(7, 176, 7);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
