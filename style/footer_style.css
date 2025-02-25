@@ -3,6 +3,34 @@
     bottom: 0;
     background-color: rgb(7, 176, 7);
     color: white;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
+}
+
+.clear {
+    background-color: red !important;
+    color: white !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    padding: 10px !important;
+    border: 1px solid white !important;
+    border-radius: 10px !important;
+}
+.clear:hover {
+    background-color: rgb(225, 10, 10) !important;
+    cursor: pointer;
+}
+
+.buy {
+    background-color: rgb(9, 156, 9) !important;
+    color: white !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    padding: 10px !important;
+    border: 1px solid white !important;
+    border-radius: 10px !important; 
+}
+.buy:hover {
+    background-color: rgb(9, 142, 9) !important;
+    cursor: pointer;
 }

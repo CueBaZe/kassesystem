@@ -1,10 +1,15 @@
 <div class="container-fluid" name="footer" id="footer">
     <div class="row">
-        <p class="col-6">Items:</p>
-        <div class="buttonBox col-6">
-
+        <div class="row col-6">
+            <p class="col-12">Items:</p>
+            <p class="col-12">Price:</p>
         </div>
-        <p class="col-12">Price:</p>
+        <div class="row col-6">
+            <div class="buttonBox">
+                <button type="button" onclick="" class="btn clear col-5 m-4">Clear</button>
+                <button type="button" onclick="" class="btn buy col-5 m-4">Buy</button>
+            </div>
+        </div>
     </div>
 </div>
 </body>
