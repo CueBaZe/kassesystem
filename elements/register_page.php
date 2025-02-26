@@ -30,8 +30,8 @@
                     </div>
 
                     <div class="terms">
-                        <input type="checkbox" name="rem" class="rembox">
-                        <label for="rem">Accept <a href="terms and conditions"></a></label>
+                        <input type="checkbox" name="term" class="termbox">
+                        <label for="rem">Accept <a href="">terms and conditions</a></label>
                     </div>
 
                     <div class="register_button_box">

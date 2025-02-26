@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="reg">
-                        <label class="reg-text">Don't have an account? <a href="#">Register</a></label>
+                        <label class="reg-text">Don't have an account? <a href="register_page.php">Register</a></label>
                     </div>
                     </form>
                 </div>
