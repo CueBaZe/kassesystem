@@ -72,7 +72,7 @@
 
                             if(count($errors) > 0) {
                                 foreach($errors as $error) {
-                                    echo "<div class='alert'>$error</div>";
+                                    echo "<div><p class='alert'>$error</p></div>";
                                 }
                             } else {
                                 $password = md5($password);
