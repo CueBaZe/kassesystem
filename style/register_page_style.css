@@ -60,6 +60,10 @@ body {
     background-color: rgb(7, 176, 7, 0.6);
 }
 
+.terms {
+    margin-bottom: 15px;
+}
+
 .terms a {
     color: rgb(7, 176, 7);
     transition: 0.5s ease;
@@ -84,4 +88,14 @@ body {
     font-weight: bold;
     font-size: 18px;
     color: rgb(7, 176, 7, 0.6);
+}
+
+.alert {
+    color: white;
+    font-size: 18px;
+    margin: 5px;
+    background-color: rgb(7, 176, 7, 0.6);
+    display: inline-block;
+    border-radius: 20px;
+
 }
