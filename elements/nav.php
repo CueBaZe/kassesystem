@@ -19,7 +19,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="#" class="nav-link">Login</a>
+                            <a href="php/scripts/logout.php" class="nav-link">Logout</a>
                         </li>
                         <!--add more options if loged in-->
                     </ul>
