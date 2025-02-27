@@ -60,6 +60,10 @@
         background-color: rgb(7, 176, 7, 0.6);
     }
 
+    .rem {
+        margin: 20px;
+    }
+
     .reg {
         margin: 20px;
     }
@@ -73,4 +77,14 @@
         font-weight: bold;
         font-size: 18px;
         color: rgb(7, 176, 7, 0.6);
+    }
+
+    .alert {
+        color: white;
+        font-size: 18px;
+        margin: 5px;
+        background-color: rgb(7, 176, 7, 0.6);
+        display: inline-block;
+        border-radius: 20px;
+    
     }
