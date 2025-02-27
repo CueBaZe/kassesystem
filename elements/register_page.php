@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-8 text-center mx-auto wrapper">
                     <h3 class="title">Register</h3>
-                    <form action="">
+                    <form action="register_page.php" method="POST">
                     <div class="inputbox mx-auto col-10 col-sm-8 col-md-6">
                         <i class='bx bx-user'></i>
                         <input type="text" name="name" class="nameinput" id="name" placeholder="Name">
@@ -30,8 +30,67 @@
                     </div>
 
                     <div class="terms">
-                        <input type="checkbox" name="term" class="termbox">
+                        <input type="checkbox" name="terms" class="termbox">
                         <label for="rem">Accept <a href="">terms and conditions</a></label>
+                    </div>
+
+                    <div class="errorbox">
+                        <?php
+                        include '../php/scripts/connect.php';
+
+                        if(isset($_POST['register'])) {
+
+                            $name = $_POST['name'];
+                            $email = $_POST['email'];
+                            $password = $_POST['password'];
+                            $errors = array();
+
+                            if(empty($name) || empty($email) || empty($password)) {
+                                array_push($errors, "All fields are required!");
+                            }
+
+                            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                array_push($errors, "Email is not valid!");
+                            }
+
+                            if(strlen($password) < 8) {
+                                array_push($errors, "Password must be 8 characters long!");
+                            }
+
+                            $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
+                            $stmt->bind_param("s", $email);
+                            $stmt-> execute();
+                            $result = $stmt->get_result();
+
+                            if($result->num_rows > 0) {
+                                array_push($email, "Email already exists!");
+                            }
+
+                            if(!isset($_POST['terms'])) {    
+                                array_push($errors, "You must accept terms and conditions!");
+                            }
+
+                            if(count($errors) > 0) {
+                                foreach($errors as $error) {
+                                    echo "<div class='alert'>$error</div>";
+                                }
+                            } else {
+                                $password = md5($password);
+                                $role = "user";
+                                $stmt = $conn->prepare("INSERT INTO user (name, email, password, role) VALUES (?, ?, ?, ?)");
+                                $stmt->bind_param("ssss", $name, $email, $password, $role);
+
+                                if($stmt->execute()) {
+                                    header("location: login_page.php");
+                                    exit();
+                                } else {
+                                    echo "ERROR:" . $conn->error;
+                                }
+                            }
+                            $stmt->close();
+                        }
+                        $conn->close();
+                        ?>
                     </div>
 
                     <div class="register_button_box">
