@@ -27,9 +27,27 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
+                            <a href="#" class="nav-link">Account</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#" class="nav-link">Cart</a>
+                        </li>
+                        <li><hr class="dropdown-divider"></hr></li> 
+
+                        <?php
+                        $role = "";
+                        if(isset($_SESSION['role'])) {
+                            $role = $_SESSION['role'];
+                            if($role == "admin") {
+                                echo "<li class='dropdown-item'><a href='#' class='nav-link'>Admin</a></li>";
+                            }   
+                        }
+                        
+                        ?>
+
+                        <li class="dropdown-item">
                             <a href="php/scripts/logout.php" class="nav-link">Logout</a>
                         </li>
-                        <!--add more options if loged in-->
                     </ul>
                 </div>
             </nav>

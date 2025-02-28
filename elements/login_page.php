@@ -54,6 +54,7 @@
                                 $row = $result->fetch_assoc();
                                 $_SESSION['email'] = $row['email'];
                                 $_SESSION['id'] = $row['id'];
+                                $_SESSION['role'] = $row['role'];
 
                                 if(isset($_POST['rem'])) {
                                     //Add cookie "rem" and "email"
