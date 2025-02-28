@@ -15,7 +15,15 @@
                 <a class="navbar-brand logo" href="#">Kasse</a>
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle name" data-bs-toggle="dropdown">
-                        Geust <!--Add php to show name if logged in-->
+                        <?php
+                        if(isset($_SESSION['email'])) {
+                            $email = $_SESSION['email'];
+                            $query = mysqli_query($conn, "SELECT user.* FROM `user` WHERE user.email = '$email'");
+                            while($row=mysqli_fetch_array($query)) {
+                                echo $row['name'];
+                            }
+                        }
+                        ?>
                     </button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
