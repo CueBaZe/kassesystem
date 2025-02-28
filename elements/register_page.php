@@ -25,8 +25,8 @@
                     </div>
 
                     <div class="inputbox mx-auto col-10 col-sm-8 col-md-6">
-                        <i class='bx bx-show' id="showpass"></i>
-                        <input type="text" name="password" class="passwordinput" id="password" placeholder="Password">
+                        <i onclick="showpass()" class='bx bx-hide' id="showpass"></i>
+                        <input type="password" name="password" class="passwordinput" id="password" placeholder="Password">
                     </div>
 
                     <div class="terms">
@@ -105,4 +105,6 @@
             </div>
         </div>
     </body>
+
+    <script src="../php/scripts/showpass.js"></script>
     </html>
