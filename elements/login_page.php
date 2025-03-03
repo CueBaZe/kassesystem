@@ -1,6 +1,8 @@
-    <?php
-    session_start()
-    ?>
+<?php
+session_start();
+$display_email = isset($_COOKIE['cookie_email']) ? $_COOKIE['cookie_email'] : "";
+$checked = isset($_COOKIE['cookie_rem']) ? "checked" : "";
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -11,7 +13,7 @@
         <link rel="stylesheet" href="../style/login_page_style.css">
         <title>Login</title>
     </head>
-    <body>
+    <body onload = "deleteLastClosedTime()">
         <div class="container mt-4">
             <div class="row">
                 <div class="col-8 text-center mx-auto wrapper">
@@ -19,7 +21,7 @@
                     <form action="login_page.php" method="POST">
                     <div class="inputbox mx-auto col-10 col-sm-8 col-md-6">
                         <i class='bx bx-user'></i>
-                        <input type="text" name="email" class="emailinput" id="email" placeholder="Email">
+                        <input type="text" name="email" class="emailinput" id="email" placeholder="Email" value="<?=$display_email?>">
                     </div>
 
                     <div class="inputbox mx-auto col-10 col-sm-8 col-md-6">
@@ -28,7 +30,7 @@
                     </div>
 
                     <div class="rem">
-                        <input type="checkbox" name="rem" class="rembox">
+                        <input type="checkbox" name="rem" class="rembox" <?= $checked ?>>
                         <label for="rem">Remember me</label>
                     </div>
 
@@ -38,6 +40,7 @@
 
                         if(isset($_POST['login'])) {
                             $email = $_POST['email'];
+                            $rem = "1";
                             $password = md5($_POST['password']);
                             $errors = array();
 
@@ -57,7 +60,16 @@
                                 $_SESSION['role'] = $row['role'];
 
                                 if(isset($_POST['rem'])) {
-                                    //Add cookie "rem" and "email"
+                                    setcookie('cookie_email', $email, time() + 60*60*24*7, '/');
+                                    setcookie('cookie_rem', $rem, time() + 60*60*24*7, '/');
+                                } else {
+                                    if(isset($_COOKIE['cookie_email'])) {
+                                        setcookie('cookie_email', $email, time() - 60*60*24*7, '/');
+                                    }
+
+                                    if(isset($_COOKIE['cookie_rem'])) {
+                                        setcookie('cookie_rem', $rem, time() - 60*60*24*7, '/');
+                                    }
                                 }
                                 header("location: ../index.php");
                             } else {
@@ -89,4 +101,9 @@
     </body>
 
     <script src="../php/scripts/showpass.js"></script>
+    <script>
+    function deleteLastClosedTime() {
+        localStorage.removeItem('lastClosedTime');
+    }
+    </script>
     </html>
