@@ -6,7 +6,7 @@
         </div>
         <div class="row col-6">
             <div class="buttonBox text-end">
-                <button type="button" onclick="" class="btn buy col-6 m-4">Buy</button>
+                <button onclick="" class="btn buy col-6 m-4">Buy</button>
             </div>
         </div>
     </div>

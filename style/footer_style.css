@@ -8,15 +8,17 @@
 }
 
 .buy {
-    background-color: rgb(10, 209, 10) !important;
+    background-color: rgb(7, 167, 7) !important;
     color: white !important;
     font-size: 20px !important;
     font-weight: bold !important;
     padding: 10px !important;
     border: 1px solid white !important;
     border-radius: 10px !important; 
+    transition: 0.3s ease !important;
 }
 .buy:hover {
-    background-color: rgb(6, 185, 6) !important;
+    transform: scale(1.1) !important;
+    background-color: rgb(6, 148, 6) !important;
     cursor: pointer;
 }
