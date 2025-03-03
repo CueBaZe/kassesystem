@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    height: 100%;
+}
+
+#adminmenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#admin_wrapper {
+    width: fit-content;
+    background-color: rgb(7, 176, 7, 0.6);  
+    padding: 10px;
+}
+
+#admin_wrapper h3 {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}   
+
+div[disabled] {
+    pointer-events: none;
+    opacity: 0;
+}    
+

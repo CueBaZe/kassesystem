@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/nav_style.css">
     <link rel="stylesheet" href="style/footer_style.css">
+    <link rel="stylesheet" href="style/admin_menu_style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Kassesystem</title>
 </head>
@@ -39,7 +40,7 @@
                         if(isset($_SESSION['role'])) {
                             $role = $_SESSION['role'];
                             if($role == "admin") {
-                                echo "<li class='dropdown-item'><a href='#' class='nav-link'>Admin</a></li>";
+                                echo "<li class='dropdown-item'><a href='#' onclick='adminMenu()' class='nav-link'>Admin</a></li>";
                             }   
                         }
                         

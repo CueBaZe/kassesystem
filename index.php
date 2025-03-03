@@ -11,6 +11,10 @@
     include("elements/nav.php");
     include("elements/footer.php");
 
+    if($role == "admin") {
+        include("elements/admin_menu.php");
+    }
+
 ?>
 
     
