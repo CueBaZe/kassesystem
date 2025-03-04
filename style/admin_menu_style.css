@@ -11,7 +11,6 @@ body {
 }
 
 #admin_wrapper {
-    width: fit-content;
     background-color: rgb(7, 176, 7, 0.6);  
     padding: 10px;
     border: rgb(226, 222, 222) 2px solid;
@@ -25,43 +24,38 @@ body {
     margin-bottom: 100px;
 }   
 
-#admin_wrapper .itembtn {
-    color: white;
-    font-weight: bold;
-    font-size: 50px;
-    width: fit-content;
-    background-color: rgb(7, 176, 7);
-    border: white 1px solid;
-    border-radius: 15px;
-    margin-right: 100px;
-    margin-bottom: 120px;
-    transition: 0.3s ease;
-}
-
-#admin_wrapper .itembtn:hover {
-    background-color: rgb(7, 176, 7, 0.6);
-    transform: scale(1.1);
-}
-
+#admin_wrapper .itembtn,
 #admin_wrapper .discountbtn {
     color: white;
     font-weight: bold;
-    font-size: 50px;
-    width: fit-content;
-    background-color: rgb(190, 209, 22);
+    font-size: 30px;    
+    padding: 15px;
+    margin: 20px;
     border: white 1px solid;
     border-radius: 15px;
-    margin-left: 100px;
-    margin-bottom: 120px;    
     transition: 0.3s ease;
+    margin-bottom: 40px;
+}
+
+/* Add Items Button */
+#admin_wrapper .itembtn {
+    background-color: rgb(7, 176, 7);
+}
+
+#admin_wrapper .itembtn:hover {
+    background-color: rgba(7, 176, 7, 0.6);
+    transform: scale(1.05);
+}
+
+/* Discounts Button */
+#admin_wrapper .discountbtn {
+    background-color: rgb(190, 209, 22);
 }
 
 #admin_wrapper .discountbtn:hover {
-    background-color: rgb(190, 209, 22, 0.6);
-    transform: scale(1.1);
+    background-color: rgba(190, 209, 22, 0.6);
+    transform: scale(1.05);
 }
-
-
 
 div[disabled] {
     pointer-events: none;
