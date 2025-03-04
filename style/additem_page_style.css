@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    background-color: rgb(7, 176, 7, 0.6);  
+    border: rgb(206, 200, 200) 2px solid;
+    border-radius: 15px;
+}
+
+.wrapper h3 {
+    color: white;
+    font-size: 40px;
+}
+
+.inputbox {
+    margin-bottom: 20px;
+}
+
+.additembtn {
+    background-color: rgb(5, 160, 5);
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+}
+
+.additembtn:hover {
+    transform: scale(1.1);
+    background-color: rgb(5, 144, 5);
+}
