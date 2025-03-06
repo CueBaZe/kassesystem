@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $path = "../images/" . basename($filename);
 
-            $stmt = $conn->prepare("SELCET COUNT(*) FROM items WHERE barcode = ?");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM items WHERE barcode = ?");
             $stmt->bind_param("s", $barcode);
             $stmt->execute();
             $stmt->bind_result($count);
