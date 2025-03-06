@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style/nav_style.css">
     <link rel="stylesheet" href="style/footer_style.css">
     <link rel="stylesheet" href="style/admin_menu_style.css">
+    <link rel="stylesheet" href="style/item.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Kassesystem</title>
 </head>

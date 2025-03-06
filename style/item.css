@@ -1,0 +1,22 @@
+#box-container {
+    margin-top: 100px;
+}
+
+.boxes{
+    width: 100%;
+    margin: 15px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+.boxes img{
+    margin: 5px;
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 150px;
+    min-height: 150px;
+}
+
+.image-name {
+    font-size: 20px;
+    margin: 10px;
+}
