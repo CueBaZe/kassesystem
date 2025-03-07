@@ -26,11 +26,15 @@
                         <img src="./images/<?php echo $data['picture_path']; ?>" class="img-fluid" alt="Uploaded Image">
                         <h3 class="item-name col-12"><?php echo $data['name']; ?></h3>
                         <p class="item-price col-12">Price: <?php echo $data['price']; ?> $</p>
-                        <button class="addToCart col-8" name="addItem" value="<?php echo $data['barcode']; ?>">Add to cart</button>
-                        <?php
-                        if($_SESSION['role'] == "admin") {
-                        ?>
-                            <button class="deleteItem col-8" name="deleteItem" value="<?php echo $data['barcode']; ?>">Delete Item</button>
+                        <form action="">
+                            <button class="addToCart col-8" name="addItem" value="<?php echo $data['barcode']; ?>">Add to cart</button>
+                        </form>
+                            <?php
+                            if($_SESSION['role'] == "admin") {
+                            ?>
+                        <form action="php/scripts/delete.php" method="POST">
+                                <button class="deleteItem col-8" name="deleteItem" value="<?php echo $data['barcode']; ?>">Delete Item</button>
+                        </form>
                         <?php
                         }
                         ?>
