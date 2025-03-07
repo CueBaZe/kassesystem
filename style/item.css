@@ -20,3 +20,35 @@
     font-size: 20px;
     margin: 10px;
 }
+
+.addToCart {
+    background-color: rgb(7, 176, 7); 
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    margin: 15px;
+    transition: 0.3s ease;
+}
+
+.addToCart:hover {
+    transform: scale(1.1);
+    background-color: rgb(7, 176, 7, 0.6); 
+}
+
+.deleteItem {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 15px;
+    transition: 0.3s ease;
+}
+
+.deleteItem:hover {
+    transform: scale(1.1);
+    background-color: rgb(218, 0, 0);
+}
+
+.item-barcode {
+   margin: 0;
+}

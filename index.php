@@ -20,10 +20,23 @@
 
     while($data = mysqli_fetch_assoc($result)) {
 ?>
-            <div class="col-3 d-flex">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
                 <div class="boxes p-4 mt-4 text-center">
-                    <img src="./images/<?php echo $data['picture_path']; ?>" class="img-fluid" alt="Uploaded Image">
-                    <h3 class="image-name"><?php echo $data['picture_path']; ?></h3>
+                    <div class="row justify-content-center">
+                        <img src="./images/<?php echo $data['picture_path']; ?>" class="img-fluid" alt="Uploaded Image">
+                        <h3 class="item-name col-12"><?php echo $data['name']; ?></h3>
+                        <p class="item-price col-12">Price: <?php echo $data['price']; ?> $</p>
+                        <button class="addToCart col-8" name="addItem" value="<?php echo $data['barcode']; ?>">Add to cart</button>
+                        <?php
+                        if($_SESSION['role'] == "admin") {
+                        ?>
+                            <button class="deleteItem col-8" name="deleteItem" value="<?php echo $data['barcode']; ?>">Delete Item</button>
+                        <?php
+                        }
+                        ?>
+                        
+                        <p class="item-barcode text-end col-12"><?php echo $data['barcode'];?></p>
+                    </div>
                 </div>
             </div>
 
