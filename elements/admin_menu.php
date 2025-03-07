@@ -1,4 +1,4 @@
-<div class="container disabled" id="adminmenu" disabled="true">
+<div class="container-fluid disabled" id="adminmenu" disabled="true">
     <div class="wrapper" id="admin_wrapper">
         <div class="row text-center justify-content-center">
             <h3 class="col-12">Admin Menu</h3>
