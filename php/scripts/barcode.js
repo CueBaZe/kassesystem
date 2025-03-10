@@ -6,7 +6,7 @@ document.getElementById('submitbtn').addEventListener("click", function(event) {
     let fileinput = document.getElementById('uploadinput').files[0];
 
     if (!itemname || !itemprice || !fileinput) {
-        alert("All fields are required!");
+        document.getElementById('message').innerHTML = "<p class='text-danger'>All fields are required!</p>";
         return;
     }
 
@@ -22,9 +22,13 @@ document.getElementById('submitbtn').addEventListener("click", function(event) {
         method: "POST",
         body: formdata
     }) 
-    .then(response => response.text()) // Get response as text
+    .then(response => response.json()) // Get response as text
     .then(data => {
-        console.log("Server Response:", data); // Show success or error message
+        if (data.success) {
+            document.getElementById('message').innerHTML = "<p class='text-success'>Item has been added to database</p>";
+        } else {
+            document.getElementById('message').innerHTML = "<p class='text-danger'>Error processing request!</p>";
+        }
     })
     .catch(error => console.error("Error:", error));
 });

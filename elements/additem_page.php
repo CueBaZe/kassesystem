@@ -9,6 +9,10 @@ include("../php/scripts/connect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate and sanitize inputs
+
+    $error_message = "";
+    $success_message = "";
+
     $itemname = trim($_POST['itemname'] ?? '');
     $itemprice = trim($_POST['itemprice'] ?? '');
     $barcode = trim($_POST['barcode'] ?? '');
@@ -31,29 +35,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $path = "../images/" . basename($filename);
 
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM items WHERE barcode = ?");
-            $stmt->bind_param("s", $barcode);
-            $stmt->execute();
-            $stmt->bind_result($count);
-            $stmt->fetch();
-            $stmt->close();
+                $stmt = $conn->prepare("SELECT COUNT(*) FROM items WHERE barcode = ?");
+                $stmt->bind_param("s", $barcode);
+                $stmt->execute();
+                $stmt->bind_result($count);
+                $stmt->fetch();
+                $stmt->close();
 
-            if ($count > 0) {
-                $error_message = "Barcode already exists. try again";
-            }
-                
-                // Prepare SQL
-                $stmt = $conn->prepare("INSERT INTO items (barcode, name, price, picture_path) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param("isds", $barcode, $itemname, $itemprice, $filename);
-
-                if ($stmt->execute() && move_uploaded_file($tempname, $path)) {
-                    $success_message = "Item uploaded successfully!";
+                if ($count > 0) {
+                    $error_message = "Barcode already exists. Try again.";
                 } else {
-                    $error_message = "Database error: Could not insert item.";
+                    // Prepare SQL
+                    $stmt = $conn->prepare("INSERT INTO items (barcode, name, price, picture_path) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param("ssds", $barcode, $itemname, $itemprice, $filename);
+                    
+                    if ($stmt->execute() && move_uploaded_file($tempname, $path)) {
+                        $success_message = "Item uploaded successfully!";
+                    } else {
+                        $error_message = "Database error: Could not insert item.";
+                    }
                 }
             }
         }
     }
+
+    header("Content-Type: application/json"); // Set response type to JSON
+
+    if (!empty($error_message)) {
+        echo json_encode(["success" => false, "message" => $error_message]);
+        exit();
+    } 
+
+    if (!empty($success_message)) {
+        echo json_encode(["success" => true, "message" => $success_message]);
+        exit();
+    }
+
 }
 ?>
 
@@ -72,15 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="wrapper col-6 mx-auto">
                 <div class="row text-center justify-content-center">
                     <h3 class="title mt-4">Add Items</h3>
-                    <?php if (!empty($error_message)) echo "<p class='text-danger'>$error_message</p>"; ?>
-                    <?php if (!empty($success_message)) echo "<p class='text-success'>$success_message</p>"; ?>
+                    <div id="message"></div>
                     <form action="additem_page.php" method="POST" enctype="multipart/form-data">
                         <div class="inputbox">
                             <input type="file" class="mx-auto mb-4 mt-4" name="uploadpicture" id="uploadinput">
                             <input type="text" class="col-8 mb-4" name="itemname" id="nameinput" placeholder="Item Name">
                             <input type="number" class="col-8 mb-4" name="itemprice" id="priceinput" placeholder="Item Price ($)" min="0">
                         </div> 
-                        <button type="submit" id="submitbtn" class="btn additembtn">Add Item</button>
+                        <input type="submit" id="submitbtn" class="btn additembtn" value="Add Item">
                     </form>
                 </div>    
             </div>
