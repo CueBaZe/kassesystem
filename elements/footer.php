@@ -1,8 +1,36 @@
+<?php
+$cart = $_SESSION['cart'];
+?>
 <div class="container-fluid" name="footer" id="footer">
     <div class="row">
         <div class="row col-6">
-            <p class="col-12">Items: 10</p>
-            <p class="col-12">Price: 73$</p>
+            <p class="col-12">Items: 
+            <?php
+            //Checks how many items you have in your cart
+            $items = 0;
+            foreach($cart as $item => $numberOfItems) {
+                $items += $numberOfItems;
+            }
+            echo $items;
+            ?></p>
+            <p class="col-12">Price:     
+            <?php
+            $price = 0;
+            foreach($cart as $item => $numberOfItems) {
+                $stmt = $conn->prepare("SELECT * FROM items WHERE barcode = ?");
+                $stmt->bind_param("i", $item);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $stmt->close();
+
+                if($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $price += $row['price'] * $numberOfItems;
+                    }
+                }
+            }
+            echo $price;
+            ?>$</p>
         </div>
         <div class="row col-6">
             <div class="buttonBox text-end">
