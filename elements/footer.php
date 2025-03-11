@@ -1,6 +1,4 @@
 <?php
-session_start();
-include("connect.php");
 
 $cart = $_SESSION['cart'] ?? [];
 
@@ -20,6 +18,9 @@ foreach ($cart as $item => $numberOfItems) {
         while ($row = $result->fetch_assoc()) {
             $price += $row['price'] * $numberOfItems;
         }
+    } else {
+        unset($cart['$item']);
+        $items = 0;
     }
 }
 ?>
