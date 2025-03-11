@@ -58,6 +58,7 @@ $checked = isset($_COOKIE['cookie_rem']) ? "checked" : "";
                                 $_SESSION['email'] = $row['email'];
                                 $_SESSION['id'] = $row['id'];
                                 $_SESSION['role'] = $row['role'];
+                                $_SESSION['cart'] = [];
 
                                 if(isset($_POST['rem'])) {
                                     setcookie('cookie_email', $email, time() + 60*60*24*7, '/');
