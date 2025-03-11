@@ -26,7 +26,7 @@
                         <img src="./images/<?php echo $data['picture_path']; ?>" class="img-fluid" alt="Uploaded Image">
                         <h3 class="item-name col-12"><?php echo $data['name']; ?></h3>
                         <p class="item-price col-12">Price: <?php echo $data['price']; ?> $</p>
-                        <form action="">
+                        <form action="php/scripts/addToCart.php" method="POST">
                             <button class="addToCart col-8" name="addItem" value="<?php echo $data['barcode']; ?>">Add to cart</button>
                         </form>
                             <?php
