@@ -3,14 +3,13 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw; /* Ensure full viewport width */
-    position: fixed; /* Keep it centered even when scrolling */
+    width: 100vw;
+    position: fixed; 
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Optional: Add a dimmed background */
+    background-color: rgba(0, 0, 0, 0.7); 
 }
 
-/* Ensure wrapper remains centered properly */
 #admin_wrapper {
     background-color: rgba(7, 176, 7);
     padding: 20px;

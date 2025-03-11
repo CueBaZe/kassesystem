@@ -24,23 +24,22 @@ foreach ($cart as $item => $numberOfItems) {
     }
 }
 ?>
-
-<div class="container-fluid" name="footer" id="footer">
-    <div class="row">
-        <div class="row col-6">
-            <p class="col-12">Items: <?php echo $items; ?></p>
-            <p class="col-12">Price: <?php echo $price; ?>$</p>
-        </div>
-        <div class="row col-6">
-            <div class="buttonBox text-end">
-                <button onclick="" class="btn buy col-6 m-4">Buy</button>
+    <div class="container-fluid" name="footer" id="footer">
+        <div class="row">
+            <div class="row col-6 text-start">
+                <p class="col-12">Items: <?php echo $items; ?></p>
+                <p class="col-12">Price: <?php echo $price; ?>$</p>
+            </div>
+            <div class="row col-6">
+                <div class="buttonBox text-end">
+                    <button onclick="" class="btn buy col-6 m-4">Buy</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="php/scripts/timechecker.js"></script>
-<script src="php/scripts/admin_menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="php/scripts/timechecker.js"></script>
+    <script src="php/scripts/admin_menu.js"></script>
+</body>
 </html>
