@@ -30,11 +30,18 @@ foreach ($cart as $item => $numberOfItems) {
                 <p class="col-12">Items: <?php echo $items; ?></p>
                 <p class="col-12">Price: <?php echo $price; ?>$</p>
             </div>
+            <?php
+                if($_SESSION['onpage'] == "catalog") {
+
+            ?>
             <div class="row col-6">
                 <div class="buttonBox text-end">
                     <button onclick="" class="btn buy col-6 m-4">Buy</button>
                 </div>
             </div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 

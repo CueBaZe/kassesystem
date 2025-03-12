@@ -6,6 +6,8 @@ if(!isset($_SESSION['email'])) {
     exit();
 }
 
+$_SESSION['onpage'] = "cart";
+
 include("php/scripts/connect.php");
 
 include("elements/nav.php");
@@ -13,6 +15,7 @@ include("elements/nav.php");
 
     <div class="container" id="box-container">
         <div class="row">
+            <h3>Your Items:</h3>
             <?php
             $cart = $_SESSION['cart'];
 
@@ -42,3 +45,7 @@ include("elements/nav.php");
             ?>
         </div>
     </div>
+
+<?php
+include("elements/footer.php");
+?>

@@ -14,7 +14,14 @@
     <div class="container-fluid" name="nav" id="nav">
         <div class="row">
             <nav class="navbar fixed-top py-3 col-12">
-                <a class="navbar-brand logo" href="#">Kasse</a>
+                <a class="navbar-brand logo" href="#">
+                <?php
+                if ($_SESSION['onpage'] == "catalog") {
+                    echo "Catalog";
+                } else {
+                    echo "Cart";
+                }
+                ?></a>
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle name" data-bs-toggle="dropdown">
                         <?php
@@ -29,7 +36,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="#" class="nav-link">Account</a>
+                            <a href="index.php" class="nav-link">Catalog</a>
                         </li>
                         <li class="dropdown-item">
                             <a href="cart.php" class="nav-link">Cart</a>

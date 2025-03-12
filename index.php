@@ -6,7 +6,10 @@
         exit();
     }
 
+    $_SESSION['onpage'] = "catalog";
+
     include("php/scripts/connect.php");
+
 
     include("elements/nav.php");
 ?>
