@@ -59,6 +59,4 @@ if($role == "admin") {
     include("elements/admin_menu.php");
 }
 
-?>
-
-    
+?>   

@@ -1,18 +1,51 @@
 <?php
 session_start();
-include("connect.php");
+include("../scripts/connect.php");
+
+if(!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+$cart = $_SESSION['cart'];
 
 if(isset($_POST['addItem'])) {
-    $cart = $_SESSION['cart'];
-
     $barcode = $_POST['addItem'];
     
     if (array_key_exists($barcode, $cart)) {
-        $cart[$barcode] = $cart[$barcode] + 1;
+        $cart[$barcode]++;
     } else {
         $cart[$barcode] = 1;
     }
 }
+
 $_SESSION['cart'] = $cart;
-header("location: ../../index.php");
+
+// Calculate updated total items and price
+$items = 0;
+$price = 0;
+
+foreach ($cart as $item => $numberOfItems) {
+    $stmt = $conn->prepare("SELECT price FROM items WHERE barcode = ?");
+    $stmt->bind_param("i", $item);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $price += $row['price'] * $numberOfItems;
+        }
+    }
+    $items += $numberOfItems;
+    $_SESSION['items'] = $items;
+    $_SESSION['price'] = $price;
+}
+
+// Return JSON response
+echo json_encode([
+    "items" => $items,
+    "price" => $price
+]);
+
+exit();
 ?>
