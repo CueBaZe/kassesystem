@@ -32,7 +32,7 @@
                             <a href="#" class="nav-link">Account</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="#" class="nav-link">Cart</a>
+                            <a href="cart.php" class="nav-link">Cart</a>
                         </li>
                         <li><hr class="dropdown-divider"></hr></li> 
 
