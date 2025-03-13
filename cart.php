@@ -48,6 +48,10 @@
 
     <?php
     include("elements/footer.php");
+
+    if($role == "admin") {
+        include("elements/admin_menu.php");
+    }
     ?>
 
     <script src="php/scripts/onchange.js"></script>
