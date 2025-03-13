@@ -34,7 +34,7 @@
                                     <img src="./images/<?php echo $data['picture_path']; ?>" class="img-fluid" alt="Uploaded Image">
                                     <h3 class="item-name col-12"><?php echo $data['name']; ?></h3>
                                     <p class="item-price col-12">Price: <?php echo $data['price']; ?> $</p>
-                                    <input type="number" value="<?php echo $numberOfItems?>">
+                                    <input min="0" type="number" class="quanity-input" data-barcode = "<?php echo $data['barcode']?>" value="<?php echo $numberOfItems?>">
                                     <p class="item-barcode text-end col-12"><?php echo $data['barcode'];?></p>
                                 </div>
                             </div>
@@ -49,3 +49,5 @@
     <?php
     include("elements/footer.php");
     ?>
+
+    <script src="php/scripts/onchange.js"></script>

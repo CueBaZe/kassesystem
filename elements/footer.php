@@ -14,7 +14,7 @@ $price = $_SESSION['price'];
             ?>
             <div class="row col-6">
                 <div class="buttonBox text-end">
-                    <button onclick="" class="btn buy col-6 m-4">Buy</button>
+                    <button onclick="window.location.href = 'cart.php'" class="btn buy col-6 m-4">Buy</button>
                 </div>
             </div>
             <?php
