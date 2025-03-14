@@ -16,21 +16,25 @@
     font-size: 40px;
 }
 
+.wrapper p {
+    color: white;
+    font-size: 25px
+}
+
 .inputbox {
     margin-bottom: 20px;
 }
 
-.additembtn {
+.savebtn {
+    color: white;
     font-size: 20px;
     font-weight: bold;
-    color: white;
-    background-color: rgb(5, 160, 5);
-    margin-bottom: 20px;
+    background-color: rgb(7, 176, 7, 0.6); 
     transition: 0.3s ease;
 }
 
-.additembtn:hover {
+.savebtn:hover {
     transform: scale(1.1);
     color: white;
-    background-color: rgb(5, 144, 5);
+    background-color: rgb(7, 176, 7); 
 }
