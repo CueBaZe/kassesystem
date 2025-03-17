@@ -43,6 +43,7 @@ include("../php/scripts/connect.php");
                 </div>
                 <?php
                 }
+                $stmt->close();
                 ?>
 
             </div>

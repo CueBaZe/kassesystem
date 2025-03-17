@@ -2,12 +2,12 @@ document.getElementById('submitbtn').addEventListener("click", function(event) {
     event.preventDefault(); // Prevent default form submission
 
     let itemname = document.getElementById('nameinput').value.trim();
-    let itemprice = document.getElementById('priceinput').value.trim();
+    let itemprice = parseFloat(document.getElementById('priceinput').value.trim()); // Ensure it's a decimal number
     let itemcategory = document.getElementById('categoryinput').value.trim();
     let fileinput = document.getElementById('uploadinput').files[0];
 
-    if (!itemname || !itemprice || !itemcategory || !fileinput) {
-        document.getElementById('message').innerHTML = "<p class='text-danger'>All fields are required!</p>";
+    if (!itemname || isNaN(itemprice) || itemprice < 0 || !itemcategory || !fileinput) {
+        document.getElementById('message').innerHTML = "<p class='text-danger'>All fields are required, and price must be a valid number!</p>";
         return;
     }
 
@@ -15,7 +15,7 @@ document.getElementById('submitbtn').addEventListener("click", function(event) {
 
     let formdata = new FormData();
     formdata.append("itemname", itemname);
-    formdata.append("itemprice", itemprice);
+    formdata.append("itemprice", itemprice.toFixed(2)); // Ensure two decimal places
     formdata.append("itemcategory", itemcategory);
     formdata.append("uploadpicture", fileinput);
     formdata.append("barcode", barcode);
@@ -42,4 +42,4 @@ document.getElementById('submitbtn').addEventListener("click", function(event) {
         console.error("Error:", error);
         document.getElementById('message').innerHTML = "<p class='text-danger'>An error occurred while processing the request.</p>";
     });
-}); 
+});
