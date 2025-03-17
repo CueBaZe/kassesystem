@@ -35,7 +35,8 @@
                                     <h3 class="item-name col-12"><?php echo $data['name']; ?></h3>
                                     <p class="item-price col-12">Price: <?php echo $data['price']; ?> $</p>
                                     <input min="0" type="number" class="quanity-input" data-barcode = "<?php echo $data['barcode']?>" value="<?php echo $numberOfItems?>">
-                                    <p class="item-barcode text-end col-12"><?php echo $data['barcode'];?></p>
+                                    <p class="item-category text-start col-6"><?php echo $data['category'];?></p>
+                                    <p class="item-barcode text-end col-6"><?php echo $data['barcode'];?></p>
                                 </div>
                             </div>
                         </div>
