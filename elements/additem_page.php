@@ -15,11 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $itemname = trim($_POST['itemname'] ?? '');
     $itemprice = trim($_POST['itemprice'] ?? '');
+    $itemcategory = trim($_POST['itemcategory'] ?? '');
     $barcode = trim($_POST['barcode'] ?? '');
     $filename = $_FILES['uploadpicture']['name'] ?? '';
     $tempname = $_FILES['uploadpicture']['tmp_name'] ?? '';
     
-    if (empty($itemname) || empty($itemprice) || empty($filename) || empty($barcode)) {
+    if (empty($itemname) || empty($itemprice) || empty($filename) || empty($itemcategory) || empty($barcode)) {
         $error_message = "All fields are required!";
     } else {
         // Ensure it's a valid number
@@ -46,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $error_message = "Barcode already exists. Try again.";
                 } else {
                     // Prepare SQL
-                    $stmt = $conn->prepare("INSERT INTO items (barcode, name, price, picture_path) VALUES (?, ?, ?, ?)");
-                    $stmt->bind_param("ssds", $barcode, $itemname, $itemprice, $filename);
+                    $stmt = $conn->prepare("INSERT INTO items (barcode, name, price, category, picture_path) VALUES (?, ?, ?, ?, ?)");
+                    $stmt->bind_param("ssdss", $barcode, $itemname, $itemprice, $itemcategory, $filename);
                     
                     if ($stmt->execute() && move_uploaded_file($tempname, $path)) {
                         $success_message = "Item uploaded successfully!";
                     } else {
-                        $error_message = "Database error: Could not insert item.";
+                        $error_message = "Database error: " . $stmt->error;
                     }
                 }
             }
@@ -61,15 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     header("Content-Type: application/json"); // Set response type to JSON
 
-    if (!empty($error_message)) {
-        echo json_encode(["success" => false, "message" => $error_message]);
-        exit();
-    } 
-
-    if (!empty($success_message)) {
-        echo json_encode(["success" => true, "message" => $success_message]);
-        exit();
-    }
+    $response = ["success" => empty($error_message), "message" => $error_message ?: $success_message];
+    echo json_encode($response);
+    exit();
 
 }
 ?>
@@ -90,11 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row text-center justify-content-center">
                     <h3 class="title mt-4">Add Items</h3>
                     <div id="message"></div>
-                    <form action="additem_page.php" method="POST" enctype="multipart/form-data">
+                    <form id="addItemForm" enctype="multipart/form-data">
                         <div class="inputbox">
                             <input type="file" class="mx-auto mb-4 mt-4" name="uploadpicture" id="uploadinput">
                             <input type="text" class="col-8 mb-4" name="itemname" id="nameinput" placeholder="Item Name">
                             <input type="number" class="col-8 mb-4" name="itemprice" id="priceinput" placeholder="Item Price ($)" min="0">
+                            <input type="text" class="col-8 mb-4" name="itemcategory" id="categoryinput" placeholder="Category">
                         </div> 
                         <input type="submit" id="submitbtn" class="btn additembtn" value="Add Item">
                     </form>

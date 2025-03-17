@@ -51,7 +51,8 @@
                             }
                             ?>
                         
-                        <p class="item-barcode text-end col-12"><?php echo $data['barcode'];?></p>
+                        <p class="item-category text-start col-6"><?php echo $data['category'];?></p>
+                        <p class="item-barcode text-end col-6"><?php echo $data['barcode'];?></p>
                     </div>
                 </div>
             </div>
