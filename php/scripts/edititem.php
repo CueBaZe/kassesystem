@@ -69,31 +69,6 @@ if (isset($_POST['savebtn'])) {
         $stmt->close();
     }
 
-    if(!empty($_POST['inputBarcode'])) {
-        //change barcode of item
-        $newBarcode = $_POST['inputBarcode'];
-
-        if(strlen($newBarcode) === 8) {
-            //Check if the new barcode already exists
-            $stmt = $conn->prepare("SELECT * FROM items WHERE barcode = ?");
-            $stmt->bind_param("s", $newBarcode);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            //if not set the new barcode
-            if($result->num_rows < 1) {
-                $sql = $conn->prepare("UPDATE items SET barcode = ? WHERE barcode = ?");
-                $sql->bind_param("ss", $newBarcode, $barcode);
-                $sql->execute();
-                $sql->close();
-            }
-
-            $stmt->close();
-        }
-
-        
-    }
-
     header("location: ../../index.php");
 }
 ?>

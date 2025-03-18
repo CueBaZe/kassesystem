@@ -42,7 +42,6 @@ include("../php/scripts/connect.php");
                             <input type="file" class="mx-auto mb-4" name="inputFile" id="fileInput">
                             <input type="number" class="col-8 mb-4" name="inputPrice" id="priceInput" min="0" step = "0.01" placeholder="<?php echo $data['price']; ?>$">
                             <input type="text" class="col-8 mb-4" name="inputcategory" id="categoryinput" placeholder="<?php echo $data['category']; ?>">
-                            <input type="number" class="col-8 mb-4" name="inputBarcode" id="barcodeInput" placeholder="<?php echo $barcode; ?>"> 
                             <input type="number" class="hiddeninput" name="realBarcode" value="<?php echo $barcode; ?>" hidden>
                         </div>
                         <div class="buttonbox">
