@@ -16,12 +16,19 @@ include("../php/scripts/connect.php");
         <div class="row">
             <div class="wrapper col-6 mx-auto">
                 <div class="row text-center justify-content-center">
-                    <h3 class="title mt-4 col-12">Edit Item (<?php echo $_POST['editItem']?>)</h3>
                     <?php
-                    $barcode = $_POST['editItem'];
+                    $barcode = isset($_POST['editItem']) ? $_POST['editItem'] : null;
 
+                    if (!$barcode) {
+                        echo "<p class='text-danger'>Error: No item selected for editing.</p>";
+                        exit();
+                    }
+                    ?>
+                    <h3 class="title mt-4 col-12">Edit Item (<?php echo $barcode?>)</h3>
+
+                    <?php
                     $stmt = $conn->prepare("SELECT * FROM items WHERE barcode = ?");
-                    $stmt->bind_param("i", $barcode);
+                    $stmt->bind_param("s", $barcode);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
@@ -30,14 +37,16 @@ include("../php/scripts/connect.php");
                     ?>
                     <p class="itemName mb-4"><?php echo $data['name']; ?></p>
                     <div class="messages"></div>
-                    <form action="edititem_page.php" method="POST">
+                    <form action="../php/scripts/edititem.php" method="POST" enctype="multipart/form-data">
                         <div class="inputbox">
                             <input type="file" class="mx-auto mb-4" name="inputFile" id="fileInput">
-                            <input type="number" class="col-8 mb-4" name="inputPrice" id="priceInput" placeholder="<?php echo $data['price']; ?>$">
-                            <input type="number" class="col-8 mb-4" name="inputBarcode" id="barcodeInput" placeholder="<?php echo $barcode?>"> 
+                            <input type="number" class="col-8 mb-4" name="inputPrice" id="priceInput" min="0" step = "0.01" placeholder="<?php echo $data['price']; ?>$">
+                            <input type="text" class="col-8 mb-4" name="inputcategory" id="categoryinput" placeholder="<?php echo $data['category']; ?>">
+                            <input type="number" class="col-8 mb-4" name="inputBarcode" id="barcodeInput" placeholder="<?php echo $barcode; ?>"> 
+                            <input type="number" class="hiddeninput" name="realBarcode" value="<?php echo $barcode; ?>" hidden>
                         </div>
                         <div class="buttonbox">
-                            <input type="submit" id="savebtn" class="btn savebtn mb-4" value="Save">
+                            <input type="submit" name="savebtn" id="savebtn" class="btn savebtn mb-4" value="Save">
                         </div>
                     </form>
                 </div>

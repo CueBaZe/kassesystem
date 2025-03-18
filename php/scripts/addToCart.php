@@ -46,8 +46,7 @@ foreach ($cart as $item => $numberOfItems) {
     $stmt->bind_param("i", $item);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    // ✅ Fetch data before closing the statement
+    
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $price += $row['price'] * $numberOfItems;

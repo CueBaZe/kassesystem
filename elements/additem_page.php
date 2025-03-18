@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="inputbox">
                             <input type="file" class="mx-auto mb-4 mt-4" name="uploadpicture" id="uploadinput">
                             <input type="text" class="col-8 mb-4" name="itemname" id="nameinput" placeholder="Item Name">
-                            <input type="number" class="col-8 mb-4" name="itemprice" id="priceinput" placeholder="Item Price ($)" min="0">
+                            <input type="number" class="col-8 mb-4" name="itemprice" id="priceinput" placeholder="Item Price ($)" min="0" step = "0.01">
                             <input type="text" class="col-8 mb-4" name="itemcategory" id="categoryinput" placeholder="Category">
                         </div> 
                         <input type="submit" id="submitbtn" class="btn additembtn" value="Add Item">
