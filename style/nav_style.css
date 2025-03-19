@@ -36,3 +36,10 @@ html, body {
     background-color: rgb(8, 122, 8) !important; /* Change hover background */
 }
 
+.searchBar {
+    height: 50px;
+    border-radius: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+

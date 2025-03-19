@@ -23,6 +23,11 @@
                     echo "Cart";
                 }
                 ?></a>
+                <?php
+                if ($_SESSION['onpage'] == "catalog") {
+                    echo "<input type='text' class='searchBar col-3 text-center' name='searchItems' placeholder='Search categories'>";
+                }
+                ?>
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle name" data-bs-toggle="dropdown">
                         <?php
