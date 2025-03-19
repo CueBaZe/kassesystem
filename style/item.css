@@ -66,3 +66,9 @@
 .item-category {
     margin: 0;
 }
+
+#noItems {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 80px 40px;
+}

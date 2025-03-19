@@ -25,7 +25,11 @@
                 ?></a>
                 <?php
                 if ($_SESSION['onpage'] == "catalog") {
-                    echo "<input type='text' class='searchBar col-3 text-center' name='searchItems' placeholder='Search categories'>";
+                    echo "
+                    <form action='index.php' method='POST' class='col-4'>
+                    <input type='text' class='searchBar text-center col-12' name='searchItems' placeholder='Search categories'>
+                    </form>
+                    ";
                 }
                 ?>
                 <div class="dropdown">
