@@ -26,9 +26,9 @@
                 <?php
                 if ($_SESSION['onpage'] == "catalog") {
                     echo "
-                    <form action='index.php' method='POST' class='col-4'>
-                    <input type='text' class='searchBar text-center col-12' name='searchItems' placeholder='Search categories'>
-                    </form>
+                    <div class='col-4'>
+                    <input type='text' id='searchbar' class='searchBar text-center col-12' name='searchItems' placeholder='Search categories'>
+                    </div>
                     ";
                 }
                 ?>

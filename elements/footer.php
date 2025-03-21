@@ -26,31 +26,28 @@ $price = $_SESSION['price'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="php/scripts/timechecker.js"></script>
     <script src="php/scripts/admin_menu.js"></script>
+    <script src="php/scripts/searchbar.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const buttons = document.querySelectorAll(".addToCart");
+        document.getElementById("itemsContainer").addEventListener("click", function (e) {
+            if (e.target.classList.contains("addToCart")) {
+                e.preventDefault(); // Prevent default form submission
 
-            buttons.forEach(button => {
-                button.addEventListener("click", function (e) {
-                    e.preventDefault(); // Prevent form submission
+                let formData = new FormData();
+                formData.append("addItem", e.target.value);
 
-                    let formData = new FormData();
-                    formData.append("addItem", this.value);
-
-                    fetch("php/scripts/addToCart.php", {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Update footer values dynamically
-                        document.getElementById("cart-items").innerText = "Items:" + " " + data.items;
-                        document.getElementById("cart-price").innerText = "Price:" + " " + data.price + " $";
-                    })
-                    .catch(error => console.error("Error:", error));
-                });
-            });
+                fetch("php/scripts/addToCart.php", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("cart-items").innerText = "Items: " + data.items;
+                    document.getElementById("cart-price").innerText = "Price: " + data.price + " $";
+                })
+                .catch(error => console.error("Error:", error));
+            }
         });
+
 </script>
 
 
