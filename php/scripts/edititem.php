@@ -29,7 +29,7 @@ if (isset($_POST['savebtn'])) {
                     //upload the new picture to the database and the folder
                     $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
                     $file_extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                    if (!in_array($file_extension, $allowed_extensions)) {
+                    if (!in_array($file_extension, $allowed_extensions)) { //checks if the file extension is in array
                         $error_message = "Invalid file type! Only JPG, JPEG, PNG, and GIF allowed.";
                     } else {
                         $path = "../../images/" . basename($filename);
@@ -37,7 +37,7 @@ if (isset($_POST['savebtn'])) {
                         $sql->bind_param("ss", $filename, $barcode);
                         $sql->execute();
 
-                        if ($sql->execute() && move_uploaded_file($tempname, $path)) {
+                        if ($sql->execute() && move_uploaded_file($tempname, $path)) { //set the path into the database and the file into the folder
                             echo "succes!";
                         }
                     }   

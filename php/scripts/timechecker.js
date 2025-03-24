@@ -1,10 +1,10 @@
 window.addEventListener("load", function() {
-    if(!document.cookie.includes('cookie_rem')) {
-        checkSession();
+    if(!document.cookie.includes('cookie_rem')) { //Checks if the user has the cookie or not
+        checkSession(); //runs this function if the user does not have the cookie
     }
 })
 
-function checkSession() {
+function checkSession() { //checks how long the user has been off the side
     const lastClosedTime = localStorage.getItem('lastClosedTime');
 
     if(lastClosedTime) {
@@ -21,6 +21,6 @@ function checkSession() {
     }
 }
 
-window.addEventListener("unload", function(event) {
+window.addEventListener("unload", function(event) { //When you unload the side is stores the time
     localStorage.setItem('lastClosedTime', Date.now());
 })

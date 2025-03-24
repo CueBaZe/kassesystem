@@ -19,7 +19,7 @@ include("../php/scripts/connect.php");
                     <?php
                     $barcode = isset($_POST['editItem']) ? $_POST['editItem'] : null;
 
-                    if (!$barcode) {
+                    if (!$barcode) { //checks if barcode is not set
                         echo "<p class='text-danger'>Error: No item selected for editing.</p>";
                         exit();
                     }
@@ -27,6 +27,7 @@ include("../php/scripts/connect.php");
                     <h3 class="title mt-4 col-12">Edit Item (<?php echo $barcode?>)</h3>
 
                     <?php
+                    //Gets the infomation of the item from the database
                     $stmt = $conn->prepare("SELECT * FROM items WHERE barcode = ?");
                     $stmt->bind_param("s", $barcode);
                     $stmt->execute();

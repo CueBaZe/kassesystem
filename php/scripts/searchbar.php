@@ -1,10 +1,10 @@
 <?php
-session_start();
+session_start(); //starts session
 include("connect.php");
 
-if (isset($_POST['searchItems']) && !$_POST['searchItems'] == null) {
-    $searched = $_POST['searchItems'] . "%"; // Match categories starting with input
-    $stmt = $conn->prepare("SELECT * FROM items WHERE category LIKE ? OR name LIKE ?");
+if (isset($_POST['searchItems']) && !$_POST['searchItems'] == null) { //checks if theres is anything in the searchbar
+    $searched = $_POST['searchItems'] . "%"; // Match categories and name starting with input
+    $stmt = $conn->prepare("SELECT * FROM items WHERE category LIKE ? OR name LIKE ?"); //gets all the things that match the word in the searchbar
     $stmt->bind_param("ss", $searched, $searched);
 } else {
     $stmt = $conn->prepare("SELECT * FROM items"); // Get all items if no input
@@ -13,9 +13,10 @@ if (isset($_POST['searchItems']) && !$_POST['searchItems'] == null) {
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    while ($data = mysqli_fetch_assoc($result)) {
-        ?>
+if ($result->num_rows > 0) { //checks if there are any items matching the input
+    while ($data = mysqli_fetch_assoc($result)) { //loops all the items
+        ?> 
+        <!--Makes this card foreach item-->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
             <div class="boxes p-4 mt-4 text-center">
                 <div class="row justify-content-center">
@@ -46,7 +47,7 @@ if ($result->num_rows > 0) {
         </div>
         <?php
     }
-} else {
+} else { //if there is not items matching it writes this
     echo "<h3 class='text-center' id='noItems'>No items found...</h3>";
 }
 ?>

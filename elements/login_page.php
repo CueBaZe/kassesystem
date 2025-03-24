@@ -41,13 +41,14 @@ $checked = isset($_COOKIE['cookie_rem']) ? "checked" : "";
                         if(isset($_POST['login'])) {
                             $email = $_POST['email'];
                             $rem = "1";
-                            $password = md5($_POST['password']);
+                            $password = md5($_POST['password']); //encrypts the password
                             $errors = array();
 
-                            if(empty($email) || empty($password)) {
+                            if(empty($email) || empty($password)) { //check if any fields are empty
                                 array_push($errors, "All fields are required!");
                             }
 
+                            //checks if the login infomation is in the database
                             $stmt = $conn->prepare("SELECT * FROM user WHERE email = ? AND password = ?");
                             $stmt->bind_param("ss", $email, $password);
                             $stmt->execute();
@@ -62,15 +63,15 @@ $checked = isset($_COOKIE['cookie_rem']) ? "checked" : "";
                                 $_SESSION['items'] = 0;
                                 $_SESSION['price'] = 0;    
 
-                                if(isset($_POST['rem'])) {
+                                if(isset($_POST['rem'])) { //checks if remember me is checked if it is makes 2 cookie
                                     setcookie('cookie_email', $email, time() + 60*60*24*7, '/');
                                     setcookie('cookie_rem', $rem, time() + 60*60*24*7, '/');
                                 } else {
-                                    if(isset($_COOKIE['cookie_email'])) {
+                                    if(isset($_COOKIE['cookie_email'])) { //deletes cookie_email if set
                                         setcookie('cookie_email', $email, time() - 60*60*24*7, '/');
                                     }
 
-                                    if(isset($_COOKIE['cookie_rem'])) {
+                                    if(isset($_COOKIE['cookie_rem'])) { //deletes cookie_rem if set
                                         setcookie('cookie_rem', $rem, time() - 60*60*24*7, '/');
                                     }
                                 }
@@ -80,7 +81,7 @@ $checked = isset($_COOKIE['cookie_rem']) ? "checked" : "";
                             }
                             $stmt->close();
 
-                            if(count($errors) > 0) {
+                            if(count($errors) > 0) { //if there was any errors it echos them
                                 foreach($errors as $error) {
                                     echo "<div><p class='alert'>$error</p></div>";
                                 }

@@ -11,7 +11,7 @@ if(!isset($_SESSION['cart'])) {
 
 $cart = $_SESSION['cart'];
 
-if (isset($_POST['addItem']) || isset($_POST['newQuanity'])) {
+if (isset($_POST['addItem']) || isset($_POST['newQuanity'])) { //Checks if your in cart or catalog
 
     if(isset($_POST['newQuanity'])) {
         $barcode = $_POST['barcode'];
@@ -21,16 +21,16 @@ if (isset($_POST['addItem']) || isset($_POST['newQuanity'])) {
         if($newQuanity !== 0) {
             $cart[$barcode] = $newQuanity;
         } else {
-            unset($cart[$barcode]);
+            unset($cart[$barcode]); //removes the barcode from the array
         }
     }
 
     if(isset($_POST['addItem'])) {
         $barcode = $_POST['addItem'];
         if (array_key_exists($barcode, $cart)) {
-            $cart[$barcode]++;
+            $cart[$barcode]++; //plus 1 to the value of the barcode
         } else {
-            $cart[$barcode] = 1;
+            $cart[$barcode] = 1; //if it dosent exists sets the value to 1
         }
     }
 }
@@ -62,7 +62,7 @@ $_SESSION['items'] = $items;
 $_SESSION['price'] = $price;
 
 // Return JSON response
-echo json_encode([
+echo json_encode([ //encodes the $items and $price into json
     "items" => $items,
     "price" => $price,
 ]);

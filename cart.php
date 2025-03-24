@@ -1,7 +1,7 @@
     <?php
-    session_start();
+    session_start(); //starts tge session
 
-    if(!isset($_SESSION['email'])) {
+    if(!isset($_SESSION['email'])) { //checks if users logged in
         header("location: elements/login_page.php");
         exit();
     }
@@ -17,16 +17,16 @@
             <div class="row">
                 <?php
                 $cart = $_SESSION['cart'];
-                if (!empty($cart)) {
+                if (!empty($cart)) { //checks if carts is not empty
                     echo "<h3>Your Items:</h3>";
-                    foreach ($cart as $item => $numberOfItems) {
+                    foreach ($cart as $item => $numberOfItems) { //loops all items in the cart
                         $stmt = $conn->prepare("SELECT * FROM items WHERE barcode = ?");
                         $stmt->bind_param("i", $item);
                         $stmt->execute();
                         $result = $stmt->get_result();
                         $stmt->close();
     
-                        while($data = $result->fetch_assoc()) {
+                        while($data = $result->fetch_assoc()) { //Makes a card foreach item
                     ?>
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
                                 <div class="boxes p-4 mt-4 text-center">
@@ -43,7 +43,7 @@
                     <?php
                         }
                     }
-                }else {
+                }else { //writes this if cart is empty
                     echo "<h3>Your cart is empty:</h3>";
                 }
                     ?>

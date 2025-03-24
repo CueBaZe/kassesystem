@@ -45,15 +45,15 @@
                             $password = $_POST['password'];
                             $errors = array();
 
-                            if(empty($name) || empty($email) || empty($password)) {
+                            if(empty($name) || empty($email) || empty($password)) { //checks if any of the fields is empty
                                 array_push($errors, "All fields are required!");
                             }
 
-                            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) { //checks if is a valid email
                                 array_push($errors, "Email is not valid!");
                             }
 
-                            if(strlen($password) < 8) {
+                            if(strlen($password) < 8) { //checks if the password is 8 or longer
                                 array_push($errors, "Password must be 8 characters long!");
                             }
 
@@ -62,25 +62,25 @@
                             $stmt-> execute();
                             $result = $stmt->get_result();
 
-                            if($result->num_rows > 0) {
+                            if($result->num_rows > 0) { //checks if email all ready exisits in the database
                                 array_push($email, "Email already exists!");
                             }
 
-                            if(!isset($_POST['terms'])) {    
+                            if(!isset($_POST['terms'])) { //checks if you checked off the tems and conditions 
                                 array_push($errors, "You must accept terms and conditions!");
                             }
 
-                            if(count($errors) > 0) {
-                                foreach($errors as $error) {
+                            if(count($errors) > 0) { //checks if there was any errors
+                                foreach($errors as $error) { //echos each error
                                     echo "<div><p class='alert'>$error</p></div>";
                                 }
                             } else {
-                                $password = md5($password);
+                                $password = md5($password); //encrypts the password
                                 $role = "user";
                                 $stmt = $conn->prepare("INSERT INTO user (name, email, password, role) VALUES (?, ?, ?, ?)");
                                 $stmt->bind_param("ssss", $name, $email, $password, $role);
 
-                                if($stmt->execute()) {
+                                if($stmt->execute()) { //puts in the infomation into the database
                                     header("location: login_page.php");
                                     exit();
                                 } else {

@@ -1,14 +1,14 @@
 <?php
-    session_start();
+    session_start(); //starts the session
 
-    if(!isset($_SESSION['email'])) {
+    if(!isset($_SESSION['email'])) { //checks if users logged in
         header("location: elements/login_page.php");
         exit();
     }
 
     $_SESSION['onpage'] = "catalog";
 
-    include("php/scripts/connect.php");
+    include("php/scripts/connect.php"); 
 
 
     include("elements/nav.php");

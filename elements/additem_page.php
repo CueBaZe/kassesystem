@@ -20,18 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $filename = $_FILES['uploadpicture']['name'] ?? '';
     $tempname = $_FILES['uploadpicture']['tmp_name'] ?? '';
     
-    if (empty($itemname) || empty($itemprice) || empty($filename) || empty($itemcategory) || empty($barcode)) {
+    if (empty($itemname) || empty($itemprice) || empty($filename) || empty($itemcategory) || empty($barcode)) { //checks if any fields are empty
         $error_message = "All fields are required!";
     } else {
         // Ensure it's a valid number
-        if (!is_numeric($itemprice) || $itemprice < 0) {
+        if (!is_numeric($itemprice) || $itemprice < 0) { //checks if $itemprice is a numbr and if is bigger than 0
             $error_message = "Invalid item price!";
         } else {
             // File upload validation
             $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
             $file_extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-            if (!in_array($file_extension, $allowed_extensions)) {
+            if (!in_array($file_extension, $allowed_extensions)) { //checks if the file extension is allowed/in the array
                 $error_message = "Invalid file type! Only JPG, JPEG, PNG, and GIF allowed.";
             } else {
                 $path = "../images/" . basename($filename);
@@ -43,14 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->fetch();
                 $stmt->close();
 
-                if ($count > 0) {
+                if ($count > 0) { //checks if barcode already exists
                     $error_message = "Barcode already exists. Try again.";
                 } else {
                     // Prepare SQL
                     $stmt = $conn->prepare("INSERT INTO items (barcode, name, price, category, picture_path) VALUES (?, ?, ?, ?, ?)");
                     $stmt->bind_param("ssdss", $barcode, $itemname, $itemprice, $itemcategory, $filename);
                     
-                    if ($stmt->execute() && move_uploaded_file($tempname, $path)) {
+                    if ($stmt->execute() && move_uploaded_file($tempname, $path)) { //puts in the infomation into the database and the file into the images folder
                         $success_message = "Item uploaded successfully!";
                     } else {
                         $error_message = "Database error: " . $stmt->error;
