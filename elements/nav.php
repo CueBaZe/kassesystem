@@ -27,7 +27,7 @@
                 if ($_SESSION['onpage'] == "catalog") {
                     echo "
                     <div class='col-4'>
-                    <input type='text' id='searchbar' class='searchBar text-center col-12' name='searchItems' placeholder='Search categories'>
+                    <input type='text' id='searchbar' class='searchBar text-center col-12' name='searchItems' placeholder='Search...'>
                     </div>
                     ";
                 }

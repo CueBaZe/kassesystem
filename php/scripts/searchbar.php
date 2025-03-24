@@ -3,9 +3,9 @@ session_start();
 include("connect.php");
 
 if (isset($_POST['searchItems']) && !$_POST['searchItems'] == null) {
-    $category = $_POST['searchItems'] . "%"; // Match categories starting with input
-    $stmt = $conn->prepare("SELECT * FROM items WHERE category LIKE ?");
-    $stmt->bind_param("s", $category);
+    $searched = $_POST['searchItems'] . "%"; // Match categories starting with input
+    $stmt = $conn->prepare("SELECT * FROM items WHERE category LIKE ? OR name LIKE ?");
+    $stmt->bind_param("ss", $searched, $searched);
 } else {
     $stmt = $conn->prepare("SELECT * FROM items"); // Get all items if no input
 }
